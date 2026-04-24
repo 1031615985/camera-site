@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>拍摄作品</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .photo{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.08);cursor:pointer}
+    .photo img{width:100%;height:170px;object-fit:cover}
+    .caption{padding:10px 12px;font-size:14px}
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px}
+    .lightbox.show{display:flex}
+    .lightbox img{max-width:1000px;width:100%;max-height:78vh;object-fit:contain}
+  </style>
+</head>
+<body>
+  <header><div class="container"><h1>尼康 · 索尼 · 佳能 相机世界</h1>
+    <nav>
+      <a href="index.html">相机产品</a>
+      <a href="lenses.html">镜头中心</a>
+      <a href="gallery.html" class="active">拍摄作品</a>
+      <a href="service.html">售后服务</a>
+    </nav></div>
+  </header>
+
+  <main class="container">
+    <div class="notice">点击图片放大预览</div>
+    <h2 class="section-title">作品展示</h2>
+    <section class="gallery">
+      <article class="photo" data-src="https://picsum.photos/1200/800?random=101"><img src="https://picsum.photos/500/300?random=101"><div class="caption">尼康 | 夜景</div></article>
+      <article class="photo" data-src="https://picsum.photos/1200/800?random=102"><img src="https://picsum.photos/500/300?random=102"><div class="caption">索尼 | 人像</div></article>
+      <article class="photo" data-src="https://picsum.photos/1200/800?random=103"><img src="https://picsum.photos/500/300?random=103"><div class="caption">佳能 | 风光</div></article>
+    </section>
+  </main>
+  <footer>© 2026 尼康索尼佳能相机信息站</footer>
+
+  <div class="lightbox" id="lb"><img id="lbImg" src=""></div>
+  <script>
+    const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg');
+    document.querySelectorAll('.photo').forEach(p=>{
+      p.onclick=()=>{lbImg.src=p.dataset.src;lb.classList.add('show')}
+    });
+    lb.onclick=()=>lb.classList.remove('show');
+  </script>
+</body>
+</html>
